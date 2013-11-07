@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" media="screen">
+<link href="css/common.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top ">
+  <div class="navbar-inner"> <a class="brand" href="./index.html">ICS资源管理系统</a>
+    <ul class="nav">
+      <li class=""> <a href="./index.html">首页</a> </li>
+      <li class="active"> <a href="./getting-started.html">用户管理</a> </li>
+      <li class=""> <a href="./scaffolding.html">角色管理</a> </li>
+      <li class=""> <a href="./base-css.html">部门管理</a> </li>
+      <li class=""> <a href="./components.html">资源管理</a> </li>
+      <li class=""> <a href="./javascript.html">用户组管理</a> </li>
+      <li class=""> <a href="./customize.html">权限管理</a> </li>
+    </ul>
+  </div>
+</div>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span2 pt-40">
+      <ul id="treeDemo" class="ztree">
+      </ul>
+    </div>
+    <div class="span10 pt-40">
+      <div class="mt-5">
+        <ul class="breadcrumb">
+          <li><a href="#">Home</a> <span class="divider">/</span></li>
+          <li><a href="#">Library</a> <span class="divider">/</span></li>
+          <li class="active">Data</li>
+        </ul>
+      </div>
+      <div>
+        <div class="span9">
+          <form class="form-search">
+            <input type="text" class="input-medium">
+            <!-- search-query -->
+            <input type="text" class="input-medium">
+            <button type="submit" class="btn">搜索</button>
+          </form>
+        </div>
+        <div class="span3 text-right">
+          <button type="button" class="btn">新增</button>
+          <button type="button" class="btn">删除</button>
+        </div>
+      </div>
+      <table id="example" class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>Thornton</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+      <!--/example-->
+      
+      <div class="center">
+        <div class="pagination">
+          <ul>
+            <li class="prev disabled"><a href="#">上一页</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--/center--> 
+      
+    </div>
+  </div>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.ztree.all-3.5.js"></script> 
+<SCRIPT type="text/javascript">
+	<!--
+	var setting = {	};
+
+	var zNodes =[
+		{ name:"父节点1 - 展开", open:true,
+			children: [
+				{ name:"父节点11 - 折叠",
+					children: [
+						{ name:"叶子节点111"},
+						{ name:"叶子节点112"},
+						{ name:"叶子节点113"},
+						{ name:"叶子节点114"}
+					]},
+				{ name:"父节点12 - 折叠",
+					children: [
+						{ name:"叶子节点121"},
+						{ name:"叶子节点122"},
+						{ name:"叶子节点123"},
+						{ name:"叶子节点124"}
+					]},
+				{ name:"父节点13 - 没有子节点", isParent:true}
+			]},
+		{ name:"父节点2 - 折叠",
+			children: [
+				{ name:"父节点21 - 展开", open:true,
+					children: [
+						{ name:"叶子节点211"},
+						{ name:"叶子节点212"},
+						{ name:"叶子节点213"},
+						{ name:"叶子节点214"}
+					]},
+				{ name:"父节点22 - 折叠",
+					children: [
+						{ name:"叶子节点221"},
+						{ name:"叶子节点222"},
+						{ name:"叶子节点223"},
+						{ name:"叶子节点224"}
+					]},
+				{ name:"父节点23 - 折叠",
+					children: [
+						{ name:"叶子节点231"},
+						{ name:"叶子节点232"},
+						{ name:"叶子节点233"},
+						{ name:"叶子节点234"}
+					]}
+			]},
+		{ name:"父节点3 - 没有子节点", isParent:true}
+
+	];
+
+	$(document).ready(function(){
+		$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+	});
+	//-->
+</SCRIPT>
+</body>
+</html>
