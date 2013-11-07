@@ -3,6 +3,8 @@
 .settings/*
 target
 target/*
+*/target
+*/target/*
 .classpath
 .project
 # Package Files #
