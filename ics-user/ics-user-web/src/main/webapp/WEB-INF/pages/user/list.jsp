@@ -75,11 +75,11 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Username</th>
-							<th>Last Name</th>
-							<th>Username</th>
+							<th>username</th>
+							<th>nickname</th>
+							<th>email</th>
+							<th>phone</th>
+							<th>createDate</th>
 							<th class="operate-column">操作</th>
 						</tr>
 					</thead>
@@ -123,18 +123,7 @@
 				<!-- Modal -->
 				<div id="myModal" class="modal hide fade" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
-						<h3 id="myModalLabel">Modal header</h3>
-					</div>
-					<div class="modal-body">
-						<p>One fine body…</p>
-					</div>
-					<div class="modal-footer">
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						<button class="btn btn-primary">Save changes</button>
-					</div>
+					
 				</div>
 				<!--/myModal-->
 
@@ -223,6 +212,7 @@
 
 		$(document).ready(function() {
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			$("#myModal").load("<s:url value='/detailUser.action' />");
 		});
 	//-->
 	</SCRIPT>

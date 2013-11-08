@@ -43,6 +43,7 @@ public class BasicDaoImpl<T> extends HibernateTemplate implements IBasicDao<T> {
 		return this.load(entityClass, entityId);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void getScrollData(Class<T> entityClass,
 			AbstractPagedQuery<T> pagedQuery) {
@@ -86,9 +87,6 @@ public class BasicDaoImpl<T> extends HibernateTemplate implements IBasicDao<T> {
 		query.setMaxResults(pagedQuery.getPageSize());
 		// 设置查询结果集
 		pagedQuery.setQueryResults(query.list());
-
-		
-
 	}
 
 	/**

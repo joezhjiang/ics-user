@@ -79,7 +79,7 @@ public class User extends AbstractPagedQuery<User> implements Serializable {
 	}
 
 	@Column(name = "nickname", length = 30)
-	@NotNull(message = "昵称不能为空")
+	//@NotNull(message = "昵称不能为空")
 	public String getNickname() {
 		return nickname;
 	}

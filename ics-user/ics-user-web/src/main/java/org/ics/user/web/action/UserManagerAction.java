@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.ics.user.bean.User;
 import org.ics.user.service.IUserService;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -18,10 +19,12 @@ import org.springframework.stereotype.Controller;
  */
 
 @Controller
+@Scope("prototype")
 public class UserManagerAction {
 	private final Logger logger = Logger.getLogger(this.getClass());
 	@Resource
 	private IUserService userService;
+	private User user;
 
 	public String list() {
 		User pagedQuery = new User();
@@ -34,10 +37,17 @@ public class UserManagerAction {
 		return "user.list";
 	}
 
-	public String add() {
-		User user = new User("joseph", "123456", "joe");
-		userService.add(user);
-		return "user.add";
+	public String detail() {
+		return "user.detail";
+	}
+	
+	public String add() throws Exception {
+		try {
+			userService.add(user);
+			return "user.add.sucess";
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public String update() {
@@ -48,6 +58,14 @@ public class UserManagerAction {
 	public String delete() {
 		userService.delete();
 		return "user.delete";
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -1,0 +1,2 @@
+启动数据库：java -cp hsqldb.jar org.hsqldb.Server -database.0 apps/db/mydb -dbname.0 mydb -port 8888
+管理界面：java -cp hsqldb.jar org.hsqldb.util.DatabaseManager 
