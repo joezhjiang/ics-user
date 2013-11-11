@@ -22,5 +22,6 @@ public class DBTest {
 		System.out.println(dataSource);
 		SessionFactory sessionFactory = (SessionFactory) ac.getBean("sessionFactory");
 		System.out.println(sessionFactory);
+		
 	}
 }
