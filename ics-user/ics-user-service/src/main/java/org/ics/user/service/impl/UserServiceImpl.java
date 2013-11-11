@@ -38,9 +38,9 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-		
+	public void delete(Long id) {
+		User user = userDao.findEntity(User.class, id);
+		userDao.deleteEntity(user);
 	}
 
 	@Override

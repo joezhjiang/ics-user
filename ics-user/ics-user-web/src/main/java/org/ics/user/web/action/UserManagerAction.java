@@ -10,6 +10,8 @@ import org.ics.user.service.IUserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionSupport;
+
 /**
  * @description TODO
  * @filename UserManagerAction.java
@@ -20,20 +22,26 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope("prototype")
-public class UserManagerAction {
+public class UserManagerAction extends ActionSupport {
+	private static final long serialVersionUID = 1052277172722877256L;
 	private final Logger logger = Logger.getLogger(this.getClass());
 	@Resource
 	private IUserService userService;
 	private User user;
 
 	public String list() {
-		User pagedQuery = new User();
-		pagedQuery.setCurrPage(1);
-		pagedQuery.setPageSize(8);
-		userService.getScrollData(pagedQuery);
+		logger.info(user);
+		if(null==user){
+			user = new User();
+			user.setCurrPage(1);
+			user.setPageSize(8);
+		}
+		
+		userService.getScrollData(user);
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("pagedQuery", pagedQuery);
-		logger.info("queryResults size is "+pagedQuery.getQueryResults().size());
+		request.setAttribute("pagedQuery", user);
+		logger.info(this.getActionMessages());
+		logger.info("queryResults size is "+user.getQueryResults().size());
 		return "user.list";
 	}
 
@@ -56,8 +64,9 @@ public class UserManagerAction {
 	}
 
 	public String delete() {
-		userService.delete();
-		return "user.delete";
+		userService.delete(user.getId());
+		this.addActionMessage("删除用户成功");
+		return "user.delete.sucess";
 	}
 
 	public User getUser() {

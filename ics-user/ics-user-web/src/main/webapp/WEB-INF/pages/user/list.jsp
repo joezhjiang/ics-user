@@ -70,11 +70,16 @@
 							class="btn">批量删除</button>
 					</div>
 				</div>
+				<div>
+					<a class="close" data-dismiss="alert" href="#"> <s:actionmessage />
+					</a>
+				</div>
 				<table id="example"
 					class="table table-bordered table-striped table-hover">
 					<thead>
 						<tr>
 							<th>#</th>
+							<th>id</th>
 							<th>username</th>
 							<th>nickname</th>
 							<th>email</th>
@@ -84,20 +89,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<s:iterator var="user" status="status"
+						<s:iterator var="queryResult" status="status"
 							value="#request.pagedQuery.queryResults">
 							<tr>
 								<td><s:property value="#status.getIndex()" />
 								</td>
-								<td><s:property value="#user.username" /></td>
-								<td><s:property value="#user.password" />
+								<td><s:property value="#queryResult.id" /></td>
+								<td><s:property value="#queryResult.username" /></td>
+								<td><s:property value="#queryResult.password" />
 								</td>
 								<td>@mdo</td>
 								<td>@mdo</td>
 								<td>Thornton</td>
 								<td class="operate-column"><a href="#myModal" role="button"
-									class="btn" data-toggle="modal">编辑</a><a href="#myModal"
-									role="button" class="btn" data-toggle="modal">删除</a></td>
+									class="btn" data-toggle="modal">编辑</a> <a href="#deleteModal"
+									_deleteUserId="${ queryResult.id }" role="button"
+									class="btn deleteBtn" data-toggle="modal">删除</a></td>
 							</tr>
 						</s:iterator>
 					</tbody>
@@ -110,10 +117,18 @@
 					<div class="pagination">
 						<ul>
 							<li class="prev disabled"><a href="#">上一页</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
+							<li class="active"><a
+								href="<s:url value='/listUser.action?user.currPage=1&user.pageSize=8' />">1</a>
+							</li>
+							<li><a
+								href="<s:url value='/listUser.action?user.currPage=2&user.pageSize=8' />">2</a>
+							</li>
+							<li><a
+								href="<s:url value='/listUser.action?user.currPage=3&user.pageSize=8' />">3</a>
+							</li>
+							<li><a
+								href="<s:url value='/listUser.action?user.currPage=4&user.pageSize=8' />">4</a>
+							</li>
 							<li class="next"><a href="#">下一页</a></li>
 						</ul>
 					</div>
@@ -123,9 +138,29 @@
 				<!-- Modal -->
 				<div id="myModal" class="modal hide fade" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					
+
 				</div>
 				<!--/myModal-->
+
+				<!-- delte Modal -->
+				<div id="deleteModal" class="modal hide fade" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<s:form id="deleteForm" action="deleteUser" method="post">
+						<s:hidden id="userId" name="user.id"></s:hidden>
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h3 id="myModalLabel">删除用户</h3>
+						</div>
+						<div class="modal-body">
+							<p>是否确认删除该用户？</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+							<button id="deleteUser" class="btn btn-primary">Delete</button>
+						</div>
+					</s:form>
+				</div>
 
 			</div>
 		</div>
@@ -213,6 +248,14 @@
 		$(document).ready(function() {
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 			$("#myModal").load("<s:url value='/detailUser.action' />");
+			$(".deleteBtn").click(function() {
+				var userId = $(this).attr("_deleteUserId");
+				$("#userId").val(userId);
+			});
+			$("#deleteUser").click(function() {
+				$("#deleteForm").submit();
+			});
+			$(".alert").alert('close');
 		});
 	//-->
 	</SCRIPT>

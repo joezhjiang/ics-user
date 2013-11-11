@@ -17,7 +17,7 @@ public interface IBasicDao<T> {
 	 * 
 	 * @param entity
 	 */
-	Object updateEntity(T entity);
+	T updateEntity(T entity);
 
 	/**
 	 * 删除实体
@@ -27,7 +27,13 @@ public interface IBasicDao<T> {
 	 * @param entityIds
 	 */
 	void deleteEntity(Class<T> entityClass, Object... entityIds);
-
+	
+	/**
+	 * 删除实体
+	 * @param t
+	 */
+	void deleteEntity(T t);
+	
 	/**
 	 * 获取实体
 	 * 
@@ -36,7 +42,7 @@ public interface IBasicDao<T> {
 	 * @param entityId
 	 * @return
 	 */
-	Object findEntity(Class<T> entityClass, Serializable entityId);
+	T findEntity(Class<T> entityClass, Serializable entityId);
 
 	/**
 	 * 获取分页数据

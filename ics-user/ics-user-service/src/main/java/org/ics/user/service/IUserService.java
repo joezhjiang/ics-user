@@ -15,7 +15,7 @@ public interface IUserService {
 	public void add(User user);
 	public void list();
 	public void update(User user);
-	public void delete();
+	public void delete(Long id);
 	/**
 	 * 获取分页数据
 	 * 

@@ -30,15 +30,18 @@ public class BasicDaoImpl<T> extends HibernateTemplate implements IBasicDao<T> {
 		this.persist(entity);
 	}
 
-	public Object updateEntity(T entity) {
+	public T updateEntity(T entity) {
 		return this.merge(entity);
 	}
 
+	public void deleteEntity(T t){
+		this.delete(t);
+	}
 	public void deleteEntity(Class<T> entityClass, Object... entityIds) {
 		//this.delete(entity);
 	}
 
-	public Object findEntity(Class<T> entityClass, Serializable entityId) {
+	public T findEntity(Class<T> entityClass, Serializable entityId) {
 		// TODO Auto-generated method stub
 		return this.load(entityClass, entityId);
 	}

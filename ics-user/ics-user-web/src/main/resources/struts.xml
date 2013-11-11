@@ -11,7 +11,8 @@
 	<!-- <include file="user/struts.user.xml"></include> -->
 	<package name="user" extends="struts-default">
 		<action name="*User" class="userManagerAction" method="{1}">
-			<result name="user.add.sucess" type="redirectAction">listUser</result>
+			<result name="user.add.sucess" type="chain">listUser</result>
+			<result name="user.delete.sucess" type="chain">listUser</result>
 			<result name="user.list" type="dispatcher">/WEB-INF/pages/user/list.jsp</result>
 			<result name="user.detail" type="dispatcher">/WEB-INF/pages/user/detail.jsp</result>
 		</action>
