@@ -127,6 +127,14 @@ text-align:center;
 .min-width-tree {
 	min-width:300px;
 }
-
+ul.actionMessage,ul.actionError {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+.alert {
+	min-height: 18px;
+}
 
 

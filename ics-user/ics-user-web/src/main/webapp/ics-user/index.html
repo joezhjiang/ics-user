@@ -16,7 +16,8 @@
 </head>
 
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top ">
+<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+<!-- <div class="navbar navbar-inverse navbar-fixed-top ">
   <div class="navbar-inner"> <a class="brand" href="./index.html">ICS资源管理系统</a>
     <ul class="nav">
       <li class="active"> <a href="./index.html">首页</a> </li>
@@ -28,7 +29,7 @@
       <li class=""> <a href="./customize.html">权限管理</a> </li>
     </ul>
   </div>
-</div>
+</div> -->
 <div class="container">
   <div class="row-fluid">
     <div class="span2 pt-40">
@@ -272,6 +273,7 @@
 
 	$(document).ready(function(){
 		$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		$(".alert").alert();
 	});
 	//-->
 </SCRIPT>

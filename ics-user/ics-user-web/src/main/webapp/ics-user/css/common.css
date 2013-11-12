@@ -113,6 +113,12 @@ text-align:center;
 	text-align:center;
 	width:120px;
 }
+ul.actionMessage,ul.actionError {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
 
 
 

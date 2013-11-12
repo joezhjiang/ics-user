@@ -9,12 +9,30 @@
 	<!-- action spring 管理 -->
 	<constant name="struts.objectFactory" value="spring" />
 	<!-- <include file="user/struts.user.xml"></include> -->
-	<package name="user" extends="struts-default">
+
+	<package name="ics-struts-default" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="icsDefaultStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- action 之间传递 actionMessage -->
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="icsDefaultStack" />
+	</package>
+
+	<package name="user" extends="ics-struts-default">
 		<action name="*User" class="userManagerAction" method="{1}">
-			<result name="user.add.sucess" type="chain">listUser</result>
-			<result name="user.delete.sucess" type="chain">listUser</result>
-			<result name="user.list" type="dispatcher">/WEB-INF/pages/user/list.jsp</result>
-			<result name="user.detail" type="dispatcher">/WEB-INF/pages/user/detail.jsp</result>
+			<result name="user.add.sucess" type="redirectAction">listUser</result>
+			<result name="user.delete.sucess" type="redirectAction">
+				listUser
+			</result>
+			<result name="user.list" type="dispatcher">/WEB-INF/pages/user/list.jsp
+			</result>
+			<result name="user.detail" type="dispatcher">/WEB-INF/pages/user/detail.jsp
+			</result>
 		</action>
 	</package>
 </struts>

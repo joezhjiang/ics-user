@@ -55,6 +55,14 @@
 					</ul>
 				</div>
 				<div>
+					<div class="alert alert-success fade in out">
+						<button type="button" class="close" data-dismiss="alert">
+							&times;</button>
+						<strong> <s:actionmessage /> <s:actionerror />
+						</strong>
+					</div>
+				</div>
+				<div>
 					<div class="span9">
 						<form class="form-search">
 							<input type="text" class="input-medium">
@@ -69,10 +77,6 @@
 						<button data-toggle="modal" data-target="#myModal" type="button"
 							class="btn">批量删除</button>
 					</div>
-				</div>
-				<div>
-					<a class="close" data-dismiss="alert" href="#"> <s:actionmessage />
-					</a>
 				</div>
 				<table id="example"
 					class="table table-bordered table-striped table-hover">
@@ -92,12 +96,10 @@
 						<s:iterator var="queryResult" status="status"
 							value="#request.pagedQuery.queryResults">
 							<tr>
-								<td><s:property value="#status.getIndex()" />
-								</td>
+								<td><s:property value="#status.getIndex()" /></td>
 								<td><s:property value="#queryResult.id" /></td>
 								<td><s:property value="#queryResult.username" /></td>
-								<td><s:property value="#queryResult.password" />
-								</td>
+								<td><s:property value="#queryResult.password" /></td>
 								<td>@mdo</td>
 								<td>@mdo</td>
 								<td>Thornton</td>
@@ -255,7 +257,16 @@
 			$("#deleteUser").click(function() {
 				$("#deleteForm").submit();
 			});
-			$(".alert").alert('close');
+			var actionMessages = $(".actionMessage");
+			var actionError = $(".actionError");
+			if(actionMessages.length!=0||actionError.length!=0){
+				$(".alert").alert();
+				window.setTimeout(function(){
+					$(".alert").alert("close");
+				}, 5000);
+			}else{
+				$(".alert").alert("close");
+			}
 		});
 	//-->
 	</SCRIPT>
