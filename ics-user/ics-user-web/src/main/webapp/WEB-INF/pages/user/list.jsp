@@ -55,19 +55,22 @@
 					</ul>
 				</div>
 				<div>
-					<div class="alert alert-success fade in out">
+					<div class="alert alert-success fade in out" style="display:none;">
 						<button type="button" class="close" data-dismiss="alert">
 							&times;</button>
-						<strong> <s:actionmessage /> <s:actionerror />
-						</strong>
+						<strong> <s:actionmessage /> <s:actionerror /> </strong>
 					</div>
 				</div>
 				<div>
 					<div class="span9">
-						<form class="form-search">
-							<input type="text" class="input-medium">
-							<!-- search-query -->
-							<input type="text" class="input-medium">
+						<form class="form-search" action="/user/listUser.action"
+							method="get">
+							<input id="username" name="user.username" type="text" class="input-medium" value="${request.user.username }">
+							<input id="pageSize" name="user.pageSize" type="hidden" class="input-medium"
+								value="${request.pagedQuery.pageSize }">
+							<input id="currPage"
+								name="user.currPage" type="hidden" class="input-medium"
+								value="${request.pagedQuery.currPage }">
 							<button type="submit" class="btn">搜索</button>
 						</form>
 					</div>
@@ -119,18 +122,16 @@
 					<div class="pagination">
 						<ul>
 							<li class="prev disabled"><a href="#">上一页</a></li>
-							<li class="active"><a
-								href="<s:url value='/listUser.action?user.currPage=1&user.pageSize=8' />">1</a>
-							</li>
-							<li><a
-								href="<s:url value='/listUser.action?user.currPage=2&user.pageSize=8' />">2</a>
-							</li>
-							<li><a
-								href="<s:url value='/listUser.action?user.currPage=3&user.pageSize=8' />">3</a>
-							</li>
-							<li><a
-								href="<s:url value='/listUser.action?user.currPage=4&user.pageSize=8' />">4</a>
-							</li>
+							<!-- <s:url value='/listUser.action'>
+									<s:param name='user.currPage' value='#status.count'/>
+									<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
+								</s:url> -->
+							<s:iterator begin="1" end="#request.pagedQuery.totalPage"
+								status="status">
+								<li class="active">
+									<a class="pagedQueryClick" _pageSize="${ status.count }" _currPage="${ request.pagedQuery.pageSize }" href="javascript:void(0);"><s:property value="#status.count" /> </a>
+								</li>
+							</s:iterator>
 							<li class="next"><a href="#">下一页</a></li>
 						</ul>
 					</div>
@@ -248,25 +249,39 @@
 		];
 
 		$(document).ready(function() {
+			//初始化树形结构
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			
+			//
 			$("#myModal").load("<s:url value='/detailUser.action' />");
+			
+			//打开删除对话框
 			$(".deleteBtn").click(function() {
 				var userId = $(this).attr("_deleteUserId");
 				$("#userId").val(userId);
 			});
+			
+			//确认删除用户
 			$("#deleteUser").click(function() {
 				$("#deleteForm").submit();
 			});
+			
+			//处理Action信息
 			var actionMessages = $(".actionMessage");
 			var actionError = $(".actionError");
-			if(actionMessages.length!=0||actionError.length!=0){
-				$(".alert").alert();
-				window.setTimeout(function(){
+			if (actionMessages.length != 0 || actionError.length != 0) {
+				$(".alert").show().alert();
+				window.setTimeout(function() {
 					$(".alert").alert("close");
 				}, 5000);
-			}else{
-				$(".alert").alert("close");
 			}
+			
+			$(".pagedQueryClick").click(function(){
+				$("#pageSize").val($(this).attr("_pageSize"));
+				$("#currPage").val($(this).attr("_currPage"));
+				console.info("pageSize="+$(this).attr("_pageSize")+",currPage="+$(this).attr("_currPage"));
+				$(".form-search").submit();
+			});
 		});
 	//-->
 	</SCRIPT>
