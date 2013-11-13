@@ -129,7 +129,7 @@
 							<s:iterator begin="1" end="#request.pagedQuery.totalPage"
 								status="status">
 								<li class="active">
-									<a class="pagedQueryClick" _pageSize="${ status.count }" _currPage="${ request.pagedQuery.pageSize }" href="javascript:void(0);"><s:property value="#status.count" /> </a>
+									<a class="pagedQueryClick" _pageSize="${ request.pagedQuery.pageSize }" _currPage="${ status.count }" href="javascript:void(0);"><s:property value="#status.count" /> </a>
 								</li>
 							</s:iterator>
 							<li class="next"><a href="#">下一页</a></li>
