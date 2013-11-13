@@ -65,12 +65,9 @@
 					<div class="span9">
 						<form class="form-search" action="/user/listUser.action"
 							method="get">
-							<input id="username" name="user.username" type="text" class="input-medium" value="${request.user.username }">
-							<input id="pageSize" name="user.pageSize" type="hidden" class="input-medium"
-								value="${request.pagedQuery.pageSize }">
-							<input id="currPage"
-								name="user.currPage" type="hidden" class="input-medium"
-								value="${request.pagedQuery.currPage }">
+							<input id="username" name="user.username" type="text" class="input-medium" value="${request.pagedQuery.username }">
+							<input id="pageSize" name="user.pageSize" type="text" class="input-medium" value="${request.pagedQuery.pageSize }">
+							<input id="currPage" name="user.currPage" type="text" class="input-medium" value="1">
 							<button type="submit" class="btn">搜索</button>
 						</form>
 					</div>
@@ -122,14 +119,20 @@
 					<div class="pagination">
 						<ul>
 							<li class="prev disabled"><a href="#">上一页</a></li>
-							<!-- <s:url value='/listUser.action'>
-									<s:param name='user.currPage' value='#status.count'/>
-									<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-								</s:url> -->
 							<s:iterator begin="1" end="#request.pagedQuery.totalPage"
 								status="status">
+								<!-- <s:if test="employeetype==0">正式员工  </s:if>
+                                                 <s:elseif test="employeetype==1">外包  </s:elseif>
+                                                 <s:elseif test="employeetype==2">实习生</s:elseif>
+                                                 <s:else></s:else> -->
 								<li class="active">
-									<a class="pagedQueryClick" _pageSize="${ request.pagedQuery.pageSize }" _currPage="${ status.count }" href="javascript:void(0);"><s:property value="#status.count" /> </a>
+									<a href="
+										<s:url value='/listUser.action'>
+											<s:param name='user.currPage' value='#status.count'/>
+											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
+											<s:param name='user.username' value='#request.pagedQuery.username'/>
+										</s:url>
+									"><s:property value="#status.count" /></a>
 								</li>
 							</s:iterator>
 							<li class="next"><a href="#">下一页</a></li>
@@ -276,12 +279,6 @@
 				}, 5000);
 			}
 			
-			$(".pagedQueryClick").click(function(){
-				$("#pageSize").val($(this).attr("_pageSize"));
-				$("#currPage").val($(this).attr("_currPage"));
-				console.info("pageSize="+$(this).attr("_pageSize")+",currPage="+$(this).attr("_currPage"));
-				$(".form-search").submit();
-			});
 		});
 	//-->
 	</SCRIPT>

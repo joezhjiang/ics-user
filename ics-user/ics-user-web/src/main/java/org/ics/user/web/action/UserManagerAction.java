@@ -3,9 +3,11 @@ package org.ics.user.web.action;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.ics.user.basic.AbstractPagedQuery;
 import org.ics.user.bean.User;
 import org.ics.user.service.IUserService;
 import org.springframework.context.annotation.Scope;
@@ -31,16 +33,15 @@ public class UserManagerAction extends ActionSupport {
 	private User user;
 
 	public String list() {
-		logger.info(user);
-		if (null == user) {
-			user = new User();
-			user.setCurrPage(1);
-			user.setPageSize(8);
+		User pagedQuery = user;
+		if(null==pagedQuery){
+			pagedQuery = new User();
+			pagedQuery.setPageSize(8);
 		}
 
-		userService.getScrollData(user);
+		userService.getScrollData(pagedQuery);
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("pagedQuery", user);
+		request.setAttribute("pagedQuery", pagedQuery);
 		return "user.list";
 	}
 

@@ -28,9 +28,11 @@ public class UserDaoTest extends BasicDaoTest {
 	@Test
 	public void testSaveEntity() {
 		try {
-			User user = new User("joseph", "123456", "joe");
-			userDao.saveEntity(user);
-			Assert.assertNull(user.getId());
+			for (int i = 0; i < 100; i++) {
+				User user = new User("joseph", "123456", "joe");
+				userDao.saveEntity(user);
+				Assert.assertNull(user.getId());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +49,7 @@ public class UserDaoTest extends BasicDaoTest {
 
 	@Test
 	public void testDeleteEntity() {
-		
+
 	}
 
 	@Test
