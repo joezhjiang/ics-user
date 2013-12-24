@@ -120,42 +120,18 @@
 						<ul>
 							<s:if test="#request.pagedQuery.currPage==1">
 								<li class="first disabled">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='1'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">首页</a>
+									<a pageIndex="1" href="javascript:void(0);">首页</a>
 								</li>
 								<li class="prev disabled">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='1'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">上一页</a>
+									<a pageIndex="1" href="javascript:void(0);">上一页</a>
 								</li>
 							</s:if>
 							<s:else>
 								<li class="first">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='1'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">首页</a>
+									<a pageIndex="1" href="javascript:void(0);">首页</a>
 								</li>
 								<li class="prev">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='#request.pagedQuery.currPage-1'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">上一页</a>
+									<a pageIndex="${request.pagedQuery.currPage-1 }" href="javascript:void(0);">上一页</a>
 								</li>
 							</s:else>
 							<s:iterator begin="1" end="#request.pagedQuery.totalPage"
@@ -163,31 +139,19 @@
 								<s:if test="#request.pagedQuery.currPage-4<=0">
 									<s:if test="#status.count>9">
 										<s:if test="#status.count==10">
-											<li><a href="javascript:void(0);">&hellip;</a></li>
+											<li><a pageIndex="${status.count+1 }"  href="javascript:void(0);">&hellip;</a></li>
 										</s:if>
 										<s:else></s:else>
 									</s:if>
 	                                <s:else>
 	                                 	<s:if test="#status.count == #request.pagedQuery.currPage">
 	                                 		<li class="active">
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${status.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 	                                 	</s:if>
 			                            <s:else>
 				                            <li>
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${status.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 										</s:else>
 	                                </s:else>
@@ -195,31 +159,19 @@
 								<s:elseif test="#request.pagedQuery.currPage+4>#request.pagedQuery.totalPage">
 	                                <s:if test="#status.count+9<#request.pagedQuery.totalPage">
 		                                <s:if test="#status.count+10==#request.pagedQuery.totalPage">
-		                                	<li><a href="javascript:void(0);">&hellip;</a></li>
+		                                	<li><a pageIndex="${status.count-1 }"  href="javascript:void(0);">&hellip;</a></li>
 		                                </s:if>
 										<s:else></s:else>
 	                                </s:if>
 	                                <s:else>
 	                                	<s:if test="#status.count == #request.pagedQuery.currPage">
 	                                 		<li class="active">
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${status.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 	                                 	</s:if>
 			                            <s:else>
 				                            <li>
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${status.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 										</s:else>
 	                                </s:else>
@@ -227,37 +179,25 @@
 								<s:else>
 									<s:if test="#request.pagedQuery.currPage+4<#status.count">
 										<s:if test="#request.pagedQuery.currPage+5==#status.count">
-											<li><a href="javascript:void(0);">&hellip;</a></li>
+											<li><a pageIndex="${status.count-1 }"  href="javascript:void(0);">&hellip;</a></li>
 										</s:if>
 										<s:else></s:else>
 									</s:if>
 	                                <s:elseif test="#request.pagedQuery.currPage-4>#status.count">
 										<s:if test="#request.pagedQuery.currPage-5==#status.count">
-											<li><a href="javascript:void(0);">&hellip;</a></li>
+											<li><a pageIndex="${status.count+1 }"  href="javascript:void(0);">&hellip;</a></li>
 										</s:if>
 										<s:else></s:else>
 									</s:elseif>
 	                                <s:else>
 	                                	<s:if test="#status.count == #request.pagedQuery.currPage">
 	                                 		<li class="active">
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${status.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 	                                 	</s:if>
 	                                 	<s:else>
 				                            <li>
-												<a href="
-													<s:url value='/listUser.action'>
-														<s:param name='user.currPage' value='#status.count'/>
-														<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-														<s:param name='user.username' value='#request.pagedQuery.username'/>
-													</s:url>
-												"><s:property value="#status.count" /></a>
+												<a pageIndex="${staus.count }"  href="javascript:void(0);"><s:property value="#status.count" /></a>
 											</li>
 										</s:else>
 	                                </s:else>
@@ -265,44 +205,25 @@
 							</s:iterator>
 							<s:if test="#request.pagedQuery.currPage==#request.pagedQuery.totalPage">
 								<li class="next disabled">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='#request.pagedQuery.currPage'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">下一页</a>
+									<a pageIndex="${request.pagedQuery.currPage }"  href="javascript:void(0);">下一页</a>
 								</li>
 								<li class="last disabled">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='#request.pagedQuery.totalPage'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">末页</a>
+									<a pageIndex="${request.pagedQuery.totalPage }" href="javascript:void(0);">末页</a>
 								</li>
 							</s:if>
 							<s:else>
 								<li class="next">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='#request.pagedQuery.currPage+1'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">下一页</a>
+									<a pageIndex="${request.pagedQuery.currPage+1 }" href="javascript:void(0);">下一页</a>
 								</li>
 								<li class="last">
-									<a href="
-										<s:url value='/listUser.action'>
-											<s:param name='user.currPage' value='#request.pagedQuery.totalPage'/>
-											<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-											<s:param name='user.username' value='#request.pagedQuery.username'/>
-										</s:url>
-									">末页</a>
+									<a pageIndex="${request.pagedQuery.totalPage }" href="javascript:void(0);">末页</a>
 								</li>
 							</s:else>
+							<%-- <s:url value='/listUser.action'>
+									<s:param name='user.currPage' value='#request.pagedQuery.totalPage'/>
+									<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
+									<s:param name='user.username' value='#request.pagedQuery.username'/>
+								</s:url> --%>
 						</ul>
 					</div>
 				</div>
@@ -445,6 +366,12 @@
 					$(".alert").alert("close");
 				}, 5000);
 			}
+			
+			$(".pagination ul li a").click(function(){
+				console.info($(this).attr("pageIndex"));
+				$("#currPage").val($(this).attr("pageIndex"));
+				$(".form-search").submit();
+			});
 			
 		});
 	//-->
