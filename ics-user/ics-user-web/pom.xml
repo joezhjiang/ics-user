@@ -53,6 +53,7 @@
 			<groupId>aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>ics-user-web</finalName>
