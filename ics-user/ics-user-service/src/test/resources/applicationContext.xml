@@ -34,7 +34,7 @@
 	</bean>
 	<!-- SessionFactory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation">
 			<value type="org.springframework.core.io.Resource">classpath:hibernate.cfg.xml</value>
