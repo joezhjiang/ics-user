@@ -15,6 +15,8 @@
 <!-- Bootstrap -->
 <link href="<s:url value='/css/bootstrap.min.css' />" rel="stylesheet"
 	media="screen">
+<link href="<s:url value='/css/style.css' />" rel="stylesheet"
+	media="screen">
 <link href="<s:url value='/css/zTreeStyle/zTreeStyle.css' />"
 	rel="stylesheet" media="screen">
 <link href="<s:url value='/css/common.css' />" rel="stylesheet"
@@ -116,7 +118,9 @@
 				<!--/example-->
 
 				<div class="center">
-					<div class="pagination">
+					<!--  class="pagination" -->
+					<div id="demo5">
+					<%--
 						<ul>
 							<s:if test="#request.pagedQuery.currPage==1">
 								<li class="first disabled">
@@ -219,12 +223,13 @@
 									<a pageIndex="${request.pagedQuery.totalPage }" href="javascript:void(0);">末页</a>
 								</li>
 							</s:else>
-							<%-- <s:url value='/listUser.action'>
-									<s:param name='user.currPage' value='#request.pagedQuery.totalPage'/>
-									<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
-									<s:param name='user.username' value='#request.pagedQuery.username'/>
-								</s:url> --%>
 						</ul>
+						 --%>
+						 <%-- <s:url value='/listUser.action'>
+							<s:param name='user.currPage' value='#request.pagedQuery.totalPage'/>
+							<s:param name='user.pageSize' value='#request.pagedQuery.pageSize'/>
+							<s:param name='user.username' value='#request.pagedQuery.username'/>
+						</s:url> --%>
 					</div>
 				</div>
 				<!--/center-->
@@ -261,6 +266,7 @@
 	</div>
 	<script src="<s:url value='/js/jquery-1.10.2.min.js' />"></script>
 	<script src="<s:url value='/js/bootstrap.min.js' />"></script>
+	<script src="<s:url value='/js/jquery.paginate.js' />"></script>
 	<script src="<s:url value='/js/jquery.ztree.all-3.5.js' />"></script>
 	<SCRIPT type="text/javascript">
 	<!--
@@ -367,10 +373,39 @@
 				}, 5000);
 			}
 			
+			/*
 			$(".pagination ul li a").click(function(){
 				console.info($(this).attr("pageIndex"));
 				$("#currPage").val($(this).attr("pageIndex"));
 				$(".form-search").submit();
+			});
+			*/
+			var totalPage = '${request.pagedQuery.totalPage }';
+			console.info(totalPage);
+			var currPage = '${request.pagedQuery.currPage }';
+			console.info(currPage);
+			var pageSize = '${request.pagedQuery.pageSize }';
+			console.info(pageSize);
+			$("#demo5").paginate({
+				count 		: totalPage,
+				start 		: currPage,
+				display     : 10,
+				border					: true,
+				border_color			: '#fff',
+				text_color  			: '#fff',
+				background_color    	: 'black',	
+				border_hover_color		: '#ccc',
+				text_hover_color  		: '#000',
+				background_hover_color	: '#fff', 
+				images					: false,
+				mouse					: 'press',
+				onChange     			: function(page){
+											console.info(page);
+											$("#currPage").val(page);
+											$(".form-search").submit();
+											//$('._current','#paginationdemo').removeClass('_current').hide();
+											//$('#p'+page).addClass('_current').show();
+										  }
 			});
 			
 		});
