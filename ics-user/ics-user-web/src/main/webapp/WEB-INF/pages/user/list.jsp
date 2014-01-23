@@ -118,7 +118,7 @@
 				<!--/example-->
 
 				<div class="center">
-					<!--  class="pagination" -->
+					<!-- id="demo5" class="pagination" -->
 					<div id="demo5">
 					<%--
 						<ul>
@@ -391,12 +391,12 @@
 				start 		: currPage,
 				display     : 10,
 				border					: true,
-				border_color			: '#fff',
-				text_color  			: '#fff',
-				background_color    	: 'black',	
-				border_hover_color		: '#ccc',
-				text_hover_color  		: '#000',
-				background_hover_color	: '#fff', 
+				border_color			: '#dddddd',
+				text_color  			: '#999999',
+				background_color    	: '#ffffff',	
+				border_hover_color		: '#dddddd',
+				text_hover_color  		: '#666666',
+				background_hover_color	: '#f5f5f5', 
 				images					: false,
 				mouse					: 'press',
 				onChange     			: function(page){
